@@ -5,13 +5,10 @@ def get_abs_files(dir_path):
     if not os.path.isdir(dir_path):
         return []
 
-    found_files = []
+    found = []
 
-    def get_more(top):
-        for root, subdirs, files in os.walk(dir_path, topdown=True):
-            for file in files:
-                found_files.append(os.path.join(root, file))
-            for subdir in subdirs:
-                get_more(os.path.join(root, subdir))
+    for root, subdirs, files in os.walk(dir_path, topdown=True):
+        for file in files:
+            found.append(os.path.join(root, file))
 
-    return found_files
+    return found
